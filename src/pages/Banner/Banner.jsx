@@ -1,33 +1,39 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'animate.css';
 
+import { Navigation, Autoplay } from 'swiper/modules';
 
-// import required modules
-import { Navigation } from 'swiper/modules';
 const Banner = () => {
     return (
         <>
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+            <Swiper
+                navigation={true}
+                modules={[Navigation, Autoplay]}
+                autoplay={{ delay: 2000, disableOnInteraction: false }} // প্রতিটি ইমেজ ২ সেকেন্ড পর পরিবর্তন হবে
+                loop={true} // লাস্ট ইমেজের পর আবার প্রথম ইমেজে ফিরে যাবে
+                className="mySwiper animate__animated animate__bounce animate__delay-2s"
+            >
                 <SwiperSlide className='text-center'>
-                    <img src='/src/assets/logo m.png' alt="" />
+                    <img className='h-96 w-full' src="https://i.ibb.co/dbGdCwm/Guesthouses-1.jpg" alt="" />
                 </SwiperSlide>
                 <SwiperSlide className='text-center'>
-                    <img src='/src/assets/logo m.png' alt="" />
+                    <img className='h-96 w-full' src="https://i.ibb.co/s9dH0ZY/Hotels-1.jpg" alt="" />
                 </SwiperSlide>
-                 <SwiperSlide className='text-center'>
-                    <img src='/src/assets/logo m.png' alt="" />
+                <SwiperSlide className='text-center'>
+                    <img className='h-96 w-full' src="https://i.ibb.co/ckTYFDC/Lodges-1.jpg" alt="" />
                 </SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
+                <SwiperSlide>
+                    <img className='h-96 w-full' src="https://i.ibb.co/0D3qscQ/resorts-1.jpg" alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img className='h-96 w-full' src="https://i.ibb.co/5cXgFpM/vacation-rentals-1.jpg" alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img className='h-96 w-full' src="https://i.ibb.co/Rjr1FRb/Guesthouses3.jpg" alt="" />
+                </SwiperSlide>
             </Swiper>
-
         </>
     );
 };
