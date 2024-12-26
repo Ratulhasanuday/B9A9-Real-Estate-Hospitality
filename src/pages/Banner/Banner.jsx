@@ -11,8 +11,8 @@ const Banner = () => {
             <Swiper
                 navigation={true}
                 modules={[Navigation, Autoplay]}
-                autoplay={{ delay: 2000, disableOnInteraction: false }} // প্রতিটি ইমেজ ২ সেকেন্ড পর পরিবর্তন হবে
-                loop={true} // লাস্ট ইমেজের পর আবার প্রথম ইমেজে ফিরে যাবে
+                autoplay={{ delay: 2000, disableOnInteraction: false }} 
+                loop={true} 
                 className="mySwiper animate__animated animate__bounce animate__delay-2s"
             >
                 <SwiperSlide className='text-center'>

@@ -2,7 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
     const nav = <>
-        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/" >Home</NavLink></li>
+        <li><NavLink to="/ourService">Our Service</NavLink></li>
+        <li><NavLink to="/map">Map</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
     </>
     return (
@@ -23,7 +25,6 @@ const Navbar = () => {
                                 d="M4 6h16M4 12h8m-8 6h16" />
                         </svg>
                     </div>
-                    <h1 className="text-xl">Ratul Real Estate</h1>
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
@@ -32,6 +33,7 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
+                <Link to={'/'} className="text-xl font-bold">REstate</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
