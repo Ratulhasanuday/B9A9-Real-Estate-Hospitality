@@ -20,17 +20,21 @@ const Login = () => {
         const email = form.get('email');
         const password = form.get('password');
         console.log(email, password);
+        if (password.length < 6) {
+            toast.error("Password must be at least 6 characters long!");
+            return;
+        }
         signIn(email, password)
         .then(result => {
             console.log(result.user);
-            toast.success("Login successful!", { autoClose: 3000, position: "top-left" });
+            toast.success("Login successful!", { autoClose: 3000, position: "top-right" });
             setTimeout(() => {
                 navigate(location?.state ? location.state : "/");
             }, 3000);
         })
         .catch(error => {
             console.error(error);
-            toast.error("Login failed!", { autoClose: 3000, position: "top-left" });
+            toast.error("Login failed!", { autoClose: 3000, position: "top-right" });
         });
     }
 

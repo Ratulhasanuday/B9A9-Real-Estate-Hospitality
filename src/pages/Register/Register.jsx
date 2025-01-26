@@ -20,7 +20,23 @@ const Register = () => {
         const name = form.get('name');
         const photo = form.get('photo');
         console.log(email, password, name, photo);
-
+        if (password.length < 6) {
+            toast.error("Password must be at least 6 characters long!");
+            return;
+        }
+        if (!/[A-Z]/.test(password)) {
+            toast.error("Password must include at least one uppercase letter!");
+            return;
+        }
+        if (!/[a-z]/.test(password)) {
+            toast.error("Password must include at least one lowercase letter!");
+            return;
+        }
+        if (!/\d/.test(password)) {
+            toast.error("Password must include at least one number!");
+            return;
+        }
+    
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
