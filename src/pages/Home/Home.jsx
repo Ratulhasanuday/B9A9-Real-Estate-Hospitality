@@ -6,7 +6,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 
 const Home = () => {
     const card = useLoaderData();
-    // console.log(card);//
+    // console.log(card);//n
 
     return (
         <div>
