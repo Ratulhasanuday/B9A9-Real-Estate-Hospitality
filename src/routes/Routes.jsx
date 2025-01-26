@@ -6,6 +6,8 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import OurService from "../pages/OurService/OurService";
 import Map from "../pages/Map/Map";
+import CardProperty from "../pages/Card-Property/CardProperty";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
     {
@@ -18,8 +20,13 @@ const routes = createBrowserRouter([
                 loader:()=>fetch('/card.json')
             },
             {
+                path:'/card/:id', 
+                element:<PrivateRoute><CardProperty></CardProperty></PrivateRoute>
+            },
+            {
                 path:'/ourService',
                 element:<OurService></OurService>,
+                loader:()=>fetch('/card.json')
             },
             {
                 path:'/map',

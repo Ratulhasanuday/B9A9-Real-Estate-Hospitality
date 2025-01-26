@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Card = ({ card }) => {
-    const { image, segment_name, button_text, estate_title, description, price, location, area, status, facilities} = card;
+    const { image, segment_name, button_text, estate_title, description, price, id } = card;
+    
     return (
         <div className="card bg-base-100  shadow-xl">
-            
+
             <figure>
                 <img
                     src={image}
@@ -19,7 +22,11 @@ const Card = ({ card }) => {
 
                 <p>{description}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn">{button_text}</button>
+                    <button className="btn">
+                        <Link to={`/card/${id}`}>
+                            {button_text}
+                        </Link>
+                    </button>
                 </div>
             </div>
         </div>

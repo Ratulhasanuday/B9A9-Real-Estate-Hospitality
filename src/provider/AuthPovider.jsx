@@ -1,8 +1,46 @@
-const AuthPovider = () => {
+import { createContext, useEffect, useState } from "react";
+import app from "../firebase/firebase.config";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+export const AuthContext=createContext(null);
+const auth=getAuth(app)
+const AuthPovider = ({children}) => {
+    const [user, setUser]=useState(null);
+    const [loading, setLoading]=useState(true);
+    const createUser=(email, password)=>{
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth,email,password)
+    }
+    const signIn=(email,password)=>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth,email,password)
+    }
+    const logOut=()=>{
+        setLoading(true);
+        return signOut(auth);
+
+    }
+    useEffect(()=>{
+        const unSubscrib=onAuthStateChanged (auth,currentUser=>{
+            console.log('user in the auth state changed',currentUser);
+            setUser(currentUser);
+            setLoading(false);
+        })
+        return()=>{
+            unSubscrib();
+        }
+    },[])
+    const authInfo={
+        user,
+        createUser,
+        logOut,
+        signIn,
+        loading,
+    }
+    
     return (
-        <div>
-            
-        </div>
+        <AuthContext.Provider value={authInfo}>
+            {children}
+        </AuthContext.Provider>
     );
 };
 

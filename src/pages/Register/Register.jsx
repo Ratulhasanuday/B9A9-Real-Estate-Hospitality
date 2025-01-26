@@ -1,16 +1,50 @@
 import { Link } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
-
+import { Icon } from 'react-icons-kit';
+import { eyeOff } from 'react-icons-kit/feather/eyeOff';
+import { eye } from 'react-icons-kit/feather/eye'
+import { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthPovider";
 const Register = () => {
-    const handlaeRegister=e=>{
+    const {createUser}=useContext(AuthContext);
+    const handlaeRegister = e => {
         e.preventDefault();
-        console.log(e.currentTarget);
-        
+        const form=new FormData(e.currentTarget);
+        const email = form.get('email');
+        const password = form.get('password');
+        const name = form.get('name');
+        const photo = form.get('photo');
+        console.log(email, password, name, photo);
+        //create user
+        createUser(email,password)
+        .then(
+            result=>{
+                console.log(result.user)
+            }
+        )
+        .catch(
+            error=>{
+                console.error(error);
+                
+            }
+        )
+    }
+    const [password, setPassword] = useState("");
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(eyeOff);
+    const handleToggle = () => {
+        if (type === 'password') {
+            setIcon(eye);
+            setType('text')
+        } else {
+            setIcon(eyeOff)
+            setType('password')
+        }
     }
     return (
         <div>
             <Navbar></Navbar>
-            <div className="hero  h-full">
+            <div className="hero h-full pt-16">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl ">
                         <h2 className="text-center text-2xl mt-4">Please Register</h2>
@@ -33,11 +67,20 @@ const Register = () => {
                                 </label>
                                 <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
                             </div>
-                            <div className="form-control">
+                            <div className="form-control ">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                                <div className="flex">
+                                    <input
+                                        type={type}
+                                        name="password" placeholder="password" className="input input-bordered"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required />
+                                    <span className="flex justify-around items-center" onClick={handleToggle}>
+                                        <Icon class="absolute mr-10" icon={icon} size={25} />
+                                    </span>
+                                </div>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Register</button>
