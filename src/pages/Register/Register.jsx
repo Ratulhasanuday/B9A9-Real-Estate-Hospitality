@@ -20,7 +20,7 @@ const Register = () => {
         const name = form.get('name');
         const photo = form.get('photo');
         console.log(email, password, name, photo);
-        
+
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
