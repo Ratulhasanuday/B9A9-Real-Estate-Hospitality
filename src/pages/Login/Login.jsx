@@ -7,13 +7,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from '../../provider/AuthPovider';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
+import { FaGoogle } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa";
 
 const Login = () => {
     const location = useLocation();
     console.log("location in the login page", location);
     const navigate = useNavigate();
-    const { signIn } = useContext(AuthContext);
-    
+    const { signIn,singInWithGoogle } = useContext(AuthContext);
     const handleLogin = e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -25,19 +26,33 @@ const Login = () => {
             return;
         }
         signIn(email, password)
-        .then(result => {
-            console.log(result.user);
-            toast.success("Login successful!", { autoClose: 3000, position: "top-right" });
-            setTimeout(() => {
-                navigate(location?.state ? location.state : "/");
-            }, 3000);
-        })
-        .catch(error => {
-            console.error(error);
-            toast.error("Login failed!", { autoClose: 3000, position: "top-right" });
-        });
+            .then(result => {
+                console.log(result.user);
+                toast.success("Login successful!", { autoClose: 3000, position: "top-right" });
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : "/");
+                }, 3000);
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error("Login failed!", { autoClose: 3000, position: "top-right" });
+            });
     }
 
+    const handleGoogleLogin = () => {
+        singInWithGoogle()
+            .then(result => {
+                console.log(result.user);
+                toast.success("Google Login Success!", { autoClose: 3000, position: "top-right" });
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : "/");
+                }, 3000);
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error("Google Login Failed!",{ autoClose: 3000, position: "top-right" } );
+            });
+    };
     const [password, setPassword] = useState("");
     const [type, setType] = useState('password');
     const [icon, setIcon] = useState(eyeOff);
@@ -77,7 +92,7 @@ const Login = () => {
                                         placeholder="password"
                                         className="input input-bordered"
                                         onChange={(e) => setPassword(e.target.value)}
-                                        required
+                                       
                                     />
                                     <span className="flex justify-around items-center" onClick={handleToggle}>
                                         <Icon className="absolute mr-10" icon={icon} size={25} />
@@ -90,6 +105,16 @@ const Login = () => {
                             <p className="text-sm">
                                 Don't have an account? <Link to="/register" className="font-bold text-[#745d5d]">Register</Link>
                             </p>
+                            <div>
+                                <div className="form-control">
+                                    <button onClick={handleGoogleLogin} className="btn "> <FaGoogle />Google Login</button>
+                                </div>
+                                <div className="form-control mt-5">
+                                    <button className="btn ">
+                                    <FaFacebookF />
+                                    Facebook Login</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

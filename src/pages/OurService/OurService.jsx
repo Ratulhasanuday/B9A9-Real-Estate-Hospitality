@@ -3,7 +3,7 @@ import Footer from "../Shared/Footer/Footer";
 import Navbar from "../Shared/Navbar/Navbar";
 import Card from "../Card/Card";
 
-const OurService = () => {
+const OurService = (   ) => {
     const card = useLoaderData();
     console.log(card);
     return (
