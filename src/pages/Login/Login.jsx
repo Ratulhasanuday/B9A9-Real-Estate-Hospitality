@@ -8,7 +8,7 @@ import { AuthContext } from '../../provider/AuthPovider';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { FaGoogle } from "react-icons/fa6";
-import {  FaGithub } from "react-icons/fa";
+import {  FaFacebook, FaGithub } from "react-icons/fa";
 
 const Login = () => {
     const location = useLocation();
@@ -148,7 +148,7 @@ const Login = () => {
                                 </div>
                                 <div className="form-control mt-5">
                                     <button onClick={handleFacebookLogin} className="btn ">
-                                    <FaGithub />
+                                    <FaFacebook />
                                     Facebook Login</button>
                                 </div>
                             </div>
