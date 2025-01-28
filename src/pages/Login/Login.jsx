@@ -8,13 +8,13 @@ import { AuthContext } from '../../provider/AuthPovider';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { FaGoogle } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa";
+import {  FaGithub } from "react-icons/fa";
 
 const Login = () => {
     const location = useLocation();
     console.log("location in the login page", location);
     const navigate = useNavigate();
-    const { signIn,singInWithGoogle } = useContext(AuthContext);
+    const { signIn,signInWithGoogle ,signInGitHub,signInFacebook} = useContext(AuthContext);
     const handleLogin = e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -39,8 +39,9 @@ const Login = () => {
             });
     }
 
-    const handleGoogleLogin = () => {
-        singInWithGoogle()
+    const handleGoogleLogin = (e) => {
+        e.preventDefault();  // Prevent form submission
+        signInWithGoogle()
             .then(result => {
                 console.log(result.user);
                 toast.success("Google Login Success!", { autoClose: 3000, position: "top-right" });
@@ -50,7 +51,38 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                toast.error("Google Login Failed!",{ autoClose: 3000, position: "top-right" } );
+                toast.error("Google Login Failed!", { autoClose: 3000, position: "top-right" });
+            });
+    };
+    
+    
+    const handleGithubLogin = () => {
+  
+        signInGitHub()
+            .then(result => {
+                console.log(result);
+                toast.success("Github Login Success!" ,{ autoClose: 3000, position: "top-right" });
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : "/");
+                }, 3000);
+            })
+            .catch(error => {
+                console.error("Github Login Error:", error); 
+                toast.error("Facebook Login Failed!", { autoClose: 3000, position: "top-right" });
+            });
+    };   const handleFacebookLogin = () => {
+  
+        signInFacebook()
+            .then(result => {
+                console.log(result);
+                toast.success("Facebook Login Success!" ,{ autoClose: 3000, position: "top-right" });
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : "/");
+                }, 3000);
+            })
+            .catch(error => {
+                console.error( error); 
+                toast.error("Facebook Login Failed!", { autoClose: 3000, position: "top-right" });
             });
     };
     const [password, setPassword] = useState("");
@@ -110,8 +142,13 @@ const Login = () => {
                                     <button onClick={handleGoogleLogin} className="btn "> <FaGoogle />Google Login</button>
                                 </div>
                                 <div className="form-control mt-5">
-                                    <button className="btn ">
-                                    <FaFacebookF />
+                                    <button onClick={handleGithubLogin} className="btn ">
+                                    <FaGithub />
+                                    GitHub Login</button>
+                                </div>
+                                <div className="form-control mt-5">
+                                    <button onClick={handleFacebookLogin} className="btn ">
+                                    <FaGithub />
                                     Facebook Login</button>
                                 </div>
                             </div>
