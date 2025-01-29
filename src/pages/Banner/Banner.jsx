@@ -1,8 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'animate.css';
-
 import { Navigation, Autoplay } from 'swiper/modules';
 
 const Banner = () => {

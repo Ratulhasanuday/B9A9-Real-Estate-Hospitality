@@ -28,17 +28,16 @@ const CardProperty = () => {
                                 src={card.image}
                                 alt="Shoes" />
                         </figure>
-                        <div className="px-5">
+                        <div className="md:px-5">
                             <div className="grid md:grid-cols-4 grid-cols-1 justify-between">
                                 <div className="col-span-3">
-                                    <h2 className="text-3xl font-bold pb-3">{card.segment_name}</h2>
+                                    <h2 className="text-3xl font-bold md:pb-3">{card.segment_name}</h2>
                                     <h2 className=" text-2xl font-bold py-2">
                                         {card.estate_title}
                                     </h2>
-
                                     <p className="text-xl font-bold py-2">{card.description}</p>
-
-                                    <h2 className=" text-xl font-bold py-2">Status : {card.status.toUpperCase()}</h2>
+                                    <h2 className=" text-xl font-bold ">Status : {card.status.toUpperCase()}</h2>
+                                    <h2 className=" text-xl font-bold ">Area : {card.area.toUpperCase()}</h2>
                                     <h1 className="text-2xl font-bold">Our Facility:</h1>
                                     <ul className="list-disc pl-5  font-bold">
                                         {card.facilities.map((facility, index) => (
@@ -52,7 +51,7 @@ const CardProperty = () => {
                                         {card.location}
                                     </h2>
                                 </div>
-                                <div className="flex justify-end">
+                                <div className="flex md:justify-end">
                                     <p className="text-xl font-bold">{card.price}</p>
                                 </div>
                             </div>
