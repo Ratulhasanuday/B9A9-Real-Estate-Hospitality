@@ -69,7 +69,7 @@ const Register = () => {
         <div>
             <Navbar />
             <div className="hero h-full pt-16">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content flex-col lg:flex-row-reverse md:w-96">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <h2 className="text-center text-2xl mt-4">Please Register</h2>
                         <form onSubmit={handleRegister} className="card-body">
@@ -100,7 +100,7 @@ const Register = () => {
                                         type={type}
                                         name="password"
                                         placeholder="Password"
-                                        className="input input-bordered"
+                                        className="w-full input input-bordered"
                                         onChange={(e) => setPassword(e.target.value)}
                                         required
                                     />
@@ -112,7 +112,7 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Register</button>
                             </div>
-                            <p className="text-lg">I have an account. <Link to="/login" className="font-bold text-[#403F3F]">Login</Link></p>
+                            <p className="text-xl text-center">I have an account.Pleace <Link to="/login" className="font-bold text-[#403F3F]">Login</Link></p>
                         </form>
                     </div>
                 </div>

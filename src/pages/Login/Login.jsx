@@ -103,7 +103,7 @@ const Login = () => {
         <div>
             <Navbar></Navbar>
             <div className="hero h-full pt-16">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content flex-col lg:flex-row-reverse md:w-96">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <h2 className="text-center text-2xl mt-4">Please Login</h2>
                         <form onSubmit={handleLogin} className="card-body">
@@ -122,19 +122,19 @@ const Login = () => {
                                         type={type}
                                         name="password"
                                         placeholder="password"
-                                        className="input input-bordered"
+                                        className="input input-bordered w-full"
                                         onChange={(e) => setPassword(e.target.value)}
                                        
                                     />
                                     <span className="flex justify-around items-center" onClick={handleToggle}>
-                                        <Icon className="absolute mr-10" icon={icon} size={25} />
+                                        <Icon className="absolute mr-10" icon={icon} size={30} />
                                     </span>
                                 </div>
                             </div>
                             <div className="form-control">
                                 <button className="btn btn-primary">Login</button>
                             </div>
-                            <p className="text-sm">
+                            <p className="text-lg  text-center">
                                 Don't have an account? <Link to="/register" className="font-bold text-[#745d5d]">Register</Link>
                             </p>
                             <div>
